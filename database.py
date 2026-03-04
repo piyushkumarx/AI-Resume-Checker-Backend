@@ -1,6 +1,7 @@
 from pymongo import MongoClient
+import os
 
-MONGO_URL = "mongodb+srv://khushihackerx:Khushi%231234@cluster0.cmhfs8j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MONGO_URL = os.getenv("MONGO_URL")
 
 client = MongoClient(MONGO_URL)
 
@@ -8,5 +9,3 @@ db = client["resume_ai_db"]
 
 users_collection = db["users"]
 resumes_collection = db["resumes"]
-
-
