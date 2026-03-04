@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pymongo
+python-multipart
+firebase-admin
+python-docx
+pypdf
+scikit-learn
+numpy
+pymupdf
