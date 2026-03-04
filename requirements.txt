@@ -5,6 +5,7 @@ python-multipart
 firebase-admin
 python-docx
 pypdf
+pdfminer.six
 scikit-learn
 numpy
 pymupdf
