@@ -3,7 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import os
 from pathlib import Path
-
+import uvicorn
+import os
 from database import resumes_collection
 from temp_resume import parse_pdf, parse_docx
 from similarity_engine import calculate_match_score
@@ -202,3 +203,6 @@ def rank_resumes(
     }
 
 
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
