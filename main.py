@@ -156,12 +156,12 @@ def rank_resumes(
         )
 
     
-        final_score = (0.7 * skill_score) + (0.3 * text_score)
+        final_score = (0.6 * text_score) + (0.4 * skill_score)
 
        
-        if final_score >= 75:
+        if final_score >= 80:
             fit_label = "Strong Fit"
-        elif final_score >= 40:
+        elif final_score >= 50:
             fit_label = "Moderate Fit"
         else:
             fit_label = "Weak Fit"
@@ -170,13 +170,13 @@ def rank_resumes(
         suggestions = []
 
         if missing_skills:
-            suggestions.append(f"Improve in: {', '.join(missing_skills)}")
+            suggestions.append(f"Consider adding skills: {', '.join(missing_skills)}")
+
+        if final_score >= 80:
+            suggestions.append("Highly suitable candidate for this role.")
 
         if final_score < 40:
-            suggestions.append("Low overall match with job description.")
-
-        if final_score >= 75:
-            suggestions.append("Highly suitable candidate for this role.")
+            suggestions.append("Low match with job description.")
 
         ranking_list.append({
             "file_name": resume.get("file_name"),

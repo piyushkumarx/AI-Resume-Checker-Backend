@@ -1,4 +1,3 @@
-
 import re
 
 COMMON_SKILLS = {
@@ -6,34 +5,30 @@ COMMON_SKILLS = {
     "fastapi": ["fastapi"],
     "django": ["django"],
     "flask": ["flask"],
-    "mongodb": ["mongodb", "mongo db"],
-    "sql": ["sql", "structured query language"],
-    "mysql": ["mysql"],
+    "mongodb": ["mongodb", "mongo", "mongo db"],
+    "sql": ["sql", "mysql", "postgres"],
     "react": ["react", "reactjs", "react.js"],
     "node": ["node", "nodejs", "node.js"],
-    "javascript": ["javascript", "java script", "js"],
+    "javascript": ["javascript", "js"],
     "machine learning": ["machine learning", "ml"],
     "deep learning": ["deep learning", "dl"],
     "docker": ["docker"],
     "aws": ["aws", "amazon web services"],
     "html": ["html"],
-    "css": ["css"]
+    "css": ["css"],
+    "git": ["git"],
+    "api": ["api", "rest api", "restful"]
 }
-
-
 
 
 def extract_skills(text):
 
     text = text.lower()
-    found_skills = []
+    found = set()
 
-    for main_skill, variations in COMMON_SKILLS.items():
+    for skill, variations in COMMON_SKILLS.items():
+        for v in variations:
+            if re.search(r"\b" + re.escape(v) + r"\b", text):
+                found.add(skill)
 
-        for variation in variations:
-            pattern = r"\b" + re.escape(variation) + r"\b"
-
-            if re.search(pattern, text):
-                found_skills.append(main_skill)
-                break   
-    return found_skills
+    return list(found)

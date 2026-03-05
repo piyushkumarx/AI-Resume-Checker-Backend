@@ -1,32 +1,41 @@
-
-
 from pdfminer.high_level import extract_text
 from docx import Document
+import re
 
+
+def clean_text(text):
+
+    text = text.lower()
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()
 
 
 def parse_pdf(file_path):
+
     try:
-        text_data = extract_text(file_path)
-        return text_data
+        text = extract_text(file_path)
+        return clean_text(text)
+
     except Exception as e:
-        print("PDF read karte waqt error aaya:", e)
+        print("PDF error:", e)
         return ""
 
 
-
 def parse_docx(file_path):
+
     try:
-        document = Document(file_path)
-        full_text = []
 
-        
-        for para in document.paragraphs:
-            full_text.append(para.text)
+        doc = Document(file_path)
 
-        final_text = "\n".join(full_text)
-        return final_text
+        text = []
+
+        for para in doc.paragraphs:
+            text.append(para.text)
+
+        combined = "\n".join(text)
+
+        return clean_text(combined)
 
     except Exception as e:
-        print("DOCX read karte waqt error aaya:", e)
+        print("DOCX error:", e)
         return ""

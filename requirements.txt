@@ -9,3 +9,5 @@ pdfminer.six
 scikit-learn
 numpy
 pymupdf
+sentence-transformers
+torch
