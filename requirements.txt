@@ -6,8 +6,7 @@ firebase-admin
 python-docx
 pypdf
 pdfminer.six
-scikit-learn
 numpy
 pymupdf
 sentence-transformers
-torch
+torch --index-url https://download.pytorch.org/whl/cpu
